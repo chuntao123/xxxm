@@ -1,0 +1,168 @@
+/* body {
+    background: url(../assets//images/bjt.jpg) no-repeat;
+    background-size: 100vw 100vh;
+} */
+
+.container {
+  position: relative;
+
+}
+
+@keyframes title {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+/* 标题样式 */
+.container .row > h1 {
+  width: 0;
+  overflow: hidden;
+  -webkit-animation: title 8s linear 0.6s forwards;
+  animation: title 8s linear 0.6s forwards
+}
+
+/* 登录框样式 */
+.login {
+  height: 500px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.mian {
+  position: relative;
+}
+
+/* 账号图标公共样式 */
+.mian > span {
+  position: absolute !important;
+  width: 32px;
+  height: 42px;
+  left: 20%;
+  top: 0;
+  line-height: 42px !important;
+  /* background-color: transparent; */
+  font-size: 16px;
+  z-index: 9;
+}
+
+/* 验证码样式 */
+.mian > img {
+  position: absolute !important;
+  width: 80px;
+  height: 40px;
+  right: 20%;
+  top: 0;
+  z-index: 9;
+  margin-top: 85px;
+  padding: 1px 2px 1px 0px;
+  border-bottom-right-radius: 5px;
+}
+
+/* 图标样式 */
+.iconfont:hover {
+  color: pink !important;
+  cursor: default
+}
+
+/* 密码图标样式 */
+.passwordicon {
+  margin-top: 42px;
+}
+
+/* 验证码图标样式 */
+.codeicon {
+  margin-top: 84px;
+}
+
+
+/* 副标题样式 */
+.container .row div:nth-of-type(1) h2 {
+  text-align: center;
+}
+
+/* 输入框样式 */
+.container .row .login .row .mian > input {
+  position: relative;
+  width: 60%;
+  height: 42px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  display: block;
+  border-radius: 6px;
+  box-shadow: none;
+  border: 1px solid #d6d6d6;
+  color: #494949;
+  text-indent: 32px;
+}
+
+.login > .row .mian > input:focus {
+  z-index: 8;
+  border-color: rgb(16, 16, 16);
+
+}
+
+/* 第一个输入框 */
+#input1 {
+  margin-top: 15px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+
+/* 第二个输入框 */
+#input2 {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+}
+
+/* 第三个输入框 */
+#input3 {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+/* icon登录按钮 */
+.login > .row > div > span {
+  font-size: 38px;
+  margin-top: 10px;
+  color: rgb(146, 146, 146);
+  transform: rotate(-90deg);
+}
+
+/* 经过登录icon */
+.login > .row > div > span:hover {
+
+  cursor: not-allowed;
+}
+
+/* 记住我样式 */
+.remember_me {
+  margin-top: 18px;
+  background-color: transparent;
+}
+
+/* 忘记密码样式 */
+.login > .row > div > p:nth-of-type(1) {
+  margin: 18px 0;
+}
+
+.login > .row > div > p {
+  color: #337ab7;
+  cursor: pointer
+}
+
+.login > .row > div > p:hover {
+  color: #1890ff;
+}
+
+

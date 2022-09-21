@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.Xj56swzJixyMapper">
+
+    <resultMap type="Xj56swzJixy" id="Xj56swzJixyResult">
+        <result property="stid"    column="STID"    />
+        <result property="stnm"    column="STNM"    />
+        <result property="lgtd"    column="LGTD"    />
+        <result property="lttd"    column="LTTD"    />
+        <result property="rvnm"    column="RVNM"    />
+        <result property="bsnm"    column="BSNM"    />
+        <result property="hnnm"    column="HNNM"    />
+        <result property="stadr"    column="STADR"    />
+        <result property="stadrShort"    column="STADR_SHORT"    />
+        <result property="sttp"    column="STTP"    />
+        <result property="xj"    column="xj"    />
+        <result property="swjUserList"    column="swj_user_list"    />
+        <result property="waterDatatm"    column="water_datatm"    />
+        <result property="waterZ"    column="water_z"    />
+        <result property="waterQ"    column="water_q"    />
+        <result property="waterWptn"    column="water_wptn"    />
+        <result property="waterTmdelay"    column="water_tmdelay"    />
+        <result property="waterWarn"    column="water_warn"    />
+        <result property="rainDatatm"    column="rain_datatm"    />
+        <result property="rainRfday"    column="rain_rfday"    />
+        <result property="rainRfxun"    column="rain_rfxun"    />
+        <result property="rainRfmon"    column="rain_rfmon"    />
+        <result property="rainRf"    column="rain_rf"    />
+        <result property="rainRfmi"    column="rain_rfmi"    />
+        <result property="rainRfall"    column="rain_rfall"    />
+        <result property="rainTmdelay"    column="rain_tmdelay"    />
+        <result property="rainWarn"    column="rain_warn"    />
+        <result property="bak1"    column="bak1"    />
+        <result property="bak2"    column="bak2"    />
+        <result property="seqNo"    column="seq_no"    />
+    </resultMap>
+
+    <sql id="selectXj56swzJixyVo">
+        select STID, STNM, LGTD, LTTD, RVNM, BSNM, HNNM, STADR, STADR_SHORT, STTP, xj, swj_user_list, water_datatm, water_z, water_q, water_wptn, water_tmdelay, water_warn, rain_datatm, rain_rfday, rain_rfxun, rain_rfmon, rain_rf, rain_rfmi, rain_rfall, rain_tmdelay, rain_warn, bak1, bak2, seq_no from xj56swz_jixy
+    </sql>
+
+    <select id="selectXj56swzJixyList" parameterType="Xj56swzJixy" resultMap="Xj56swzJixyResult">
+        <include refid="selectXj56swzJixyVo"/>
+        <where>
+            <if test="stnm != null  and stnm != ''"> and STNM = #{stnm}</if>
+            <if test="lgtd != null "> and LGTD = #{lgtd}</if>
+            <if test="lttd != null "> and LTTD = #{lttd}</if>
+            <if test="rvnm != null  and rvnm != ''"> and RVNM = #{rvnm}</if>
+            <if test="bsnm != null  and bsnm != ''"> and BSNM = #{bsnm}</if>
+            <if test="hnnm != null  and hnnm != ''"> and HNNM = #{hnnm}</if>
+            <if test="stadr != null  and stadr != ''"> and STADR = #{stadr}</if>
+            <if test="stadrShort != null  and stadrShort != ''"> and STADR_SHORT = #{stadrShort}</if>
+            <if test="sttp != null  and sttp != ''"> and STTP = #{sttp}</if>
+            <if test="xj != null  and xj != ''"> and xj = #{xj}</if>
+            <if test="swjUserList != null  and swjUserList != ''"> and swj_user_list = #{swjUserList}</if>
+            <if test="waterDatatm != null "> and water_datatm = #{waterDatatm}</if>
+            <if test="waterZ != null "> and water_z = #{waterZ}</if>
+            <if test="waterQ != null "> and water_q = #{waterQ}</if>
+            <if test="waterWptn != null "> and water_wptn = #{waterWptn}</if>
+            <if test="waterTmdelay != null "> and water_tmdelay = #{waterTmdelay}</if>
+            <if test="waterWarn != null "> and water_warn = #{waterWarn}</if>
+            <if test="rainDatatm != null "> and rain_datatm = #{rainDatatm}</if>
+            <if test="rainRfday != null "> and rain_rfday = #{rainRfday}</if>
+            <if test="rainRfxun != null "> and rain_rfxun = #{rainRfxun}</if>
+            <if test="rainRfmon != null "> and rain_rfmon = #{rainRfmon}</if>
+            <if test="rainRf != null "> and rain_rf = #{rainRf}</if>
+            <if test="rainRfmi != null "> and rain_rfmi = #{rainRfmi}</if>
+            <if test="rainRfall != null "> and rain_rfall = #{rainRfall}</if>
+            <if test="rainTmdelay != null "> and rain_tmdelay = #{rainTmdelay}</if>
+            <if test="rainWarn != null "> and rain_warn = #{rainWarn}</if>
+            <if test="bak1 != null  and bak1 != ''"> and bak1 = #{bak1}</if>
+            <if test="bak2 != null  and bak2 != ''"> and bak2 = #{bak2}</if>
+            <if test="seqNo != null "> and seq_no = #{seqNo}</if>
+        </where>
+        where xj>=0 and STTP BETWEEN 1 and 3 ORDER BY xj
+    </select>
+
+    <select id="selectXj56swzJixythreeList" parameterType="Xj56swzJixy" resultMap="Xj56swzJixyResult">
+        <include refid="selectXj56swzJixyVo"/>
+        <where>
+            <if test="stnm != null  and stnm != ''"> and STNM = #{stnm}</if>
+            <if test="lgtd != null "> and LGTD = #{lgtd}</if>
+            <if test="lttd != null "> and LTTD = #{lttd}</if>
+            <if test="rvnm != null  and rvnm != ''"> and RVNM = #{rvnm}</if>
+            <if test="bsnm != null  and bsnm != ''"> and BSNM = #{bsnm}</if>
+            <if test="hnnm != null  and hnnm != ''"> and HNNM = #{hnnm}</if>
+            <if test="stadr != null  and stadr != ''"> and STADR = #{stadr}</if>
+            <if test="stadrShort != null  and stadrShort != ''"> and STADR_SHORT = #{stadrShort}</if>
+            <if test="sttp != null  and sttp != ''"> and STTP = #{sttp}</if>
+            <if test="xj != null  and xj != ''"> and xj = #{xj}</if>
+            <if test="swjUserList != null  and swjUserList != ''"> and swj_user_list = #{swjUserList}</if>
+            <if test="waterDatatm != null "> and water_datatm = #{waterDatatm}</if>
+            <if test="waterZ != null "> and water_z = #{waterZ}</if>
+            <if test="waterQ != null "> and water_q = #{waterQ}</if>
+            <if test="waterWptn != null "> and water_wptn = #{waterWptn}</if>
+            <if test="waterTmdelay != null "> and water_tmdelay = #{waterTmdelay}</if>
+            <if test="waterWarn != null "> and water_warn = #{waterWarn}</if>
+            <if test="rainDatatm != null "> and rain_datatm = #{rainDatatm}</if>
+            <if test="rainRfday != null "> and rain_rfday = #{rainRfday}</if>
+            <if test="rainRfxun != null "> and rain_rfxun = #{rainRfxun}</if>
+            <if test="rainRfmon != null "> and rain_rfmon = #{rainRfmon}</if>
+            <if test="rainRf != null "> and rain_rf = #{rainRf}</if>
+            <if test="rainRfmi != null "> and rain_rfmi = #{rainRfmi}</if>
+            <if test="rainRfall != null "> and rain_rfall = #{rainRfall}</if>
+            <if test="rainTmdelay != null "> and rain_tmdelay = #{rainTmdelay}</if>
+            <if test="rainWarn != null "> and rain_warn = #{rainWarn}</if>
+            <if test="bak1 != null  and bak1 != ''"> and bak1 = #{bak1}</if>
+            <if test="bak2 != null  and bak2 != ''"> and bak2 = #{bak2}</if>
+            <if test="seqNo != null "> and seq_no = #{seqNo}</if>
+        </where>
+        where  STTP = 0 and xj>=0  ORDER BY xj
+    </select>
+
+    <select id="selectXj56swzJixyByStid" parameterType="String" resultMap="Xj56swzJixyResult">
+        <include refid="selectXj56swzJixyVo"/>
+        where STID = #{stid}
+    </select>
+
+    <insert id="insertXj56swzJixy" parameterType="Xj56swzJixy">
+        insert into xj56swz_jixy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="stid != null">STID,</if>
+            <if test="stnm != null">STNM,</if>
+            <if test="lgtd != null">LGTD,</if>
+            <if test="lttd != null">LTTD,</if>
+            <if test="rvnm != null">RVNM,</if>
+            <if test="bsnm != null">BSNM,</if>
+            <if test="hnnm != null">HNNM,</if>
+            <if test="stadr != null">STADR,</if>
+            <if test="stadrShort != null">STADR_SHORT,</if>
+            <if test="sttp != null">STTP,</if>
+            <if test="xj != null">xj,</if>
+            <if test="swjUserList != null">swj_user_list,</if>
+            <if test="waterDatatm != null">water_datatm,</if>
+            <if test="waterZ != null">water_z,</if>
+            <if test="waterQ != null">water_q,</if>
+            <if test="waterWptn != null">water_wptn,</if>
+            <if test="waterTmdelay != null">water_tmdelay,</if>
+            <if test="waterWarn != null">water_warn,</if>
+            <if test="rainDatatm != null">rain_datatm,</if>
+            <if test="rainRfday != null">rain_rfday,</if>
+            <if test="rainRfxun != null">rain_rfxun,</if>
+            <if test="rainRfmon != null">rain_rfmon,</if>
+            <if test="rainRf != null">rain_rf,</if>
+            <if test="rainRfmi != null">rain_rfmi,</if>
+            <if test="rainRfall != null">rain_rfall,</if>
+            <if test="rainTmdelay != null">rain_tmdelay,</if>
+            <if test="rainWarn != null">rain_warn,</if>
+            <if test="bak1 != null">bak1,</if>
+            <if test="bak2 != null">bak2,</if>
+            <if test="seqNo != null">seq_no,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="stid != null">#{stid},</if>
+            <if test="stnm != null">#{stnm},</if>
+            <if test="lgtd != null">#{lgtd},</if>
+            <if test="lttd != null">#{lttd},</if>
+            <if test="rvnm != null">#{rvnm},</if>
+            <if test="bsnm != null">#{bsnm},</if>
+            <if test="hnnm != null">#{hnnm},</if>
+            <if test="stadr != null">#{stadr},</if>
+            <if test="stadrShort != null">#{stadrShort},</if>
+            <if test="sttp != null">#{sttp},</if>
+            <if test="xj != null">#{xj},</if>
+            <if test="swjUserList != null">#{swjUserList},</if>
+            <if test="waterDatatm != null">#{waterDatatm},</if>
+            <if test="waterZ != null">#{waterZ},</if>
+            <if test="waterQ != null">#{waterQ},</if>
+            <if test="waterWptn != null">#{waterWptn},</if>
+            <if test="waterTmdelay != null">#{waterTmdelay},</if>
+            <if test="waterWarn != null">#{waterWarn},</if>
+            <if test="rainDatatm != null">#{rainDatatm},</if>
+            <if test="rainRfday != null">#{rainRfday},</if>
+            <if test="rainRfxun != null">#{rainRfxun},</if>
+            <if test="rainRfmon != null">#{rainRfmon},</if>
+            <if test="rainRf != null">#{rainRf},</if>
+            <if test="rainRfmi != null">#{rainRfmi},</if>
+            <if test="rainRfall != null">#{rainRfall},</if>
+            <if test="rainTmdelay != null">#{rainTmdelay},</if>
+            <if test="rainWarn != null">#{rainWarn},</if>
+            <if test="bak1 != null">#{bak1},</if>
+            <if test="bak2 != null">#{bak2},</if>
+            <if test="seqNo != null">#{seqNo},</if>
+         </trim>
+    </insert>
+
+    <update id="updateXj56swzJixy" parameterType="Xj56swzJixy">
+        update xj56swz_jixy
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="stnm != null">STNM = #{stnm},</if>
+            <if test="lgtd != null">LGTD = #{lgtd},</if>
+            <if test="lttd != null">LTTD = #{lttd},</if>
+            <if test="rvnm != null">RVNM = #{rvnm},</if>
+            <if test="bsnm != null">BSNM = #{bsnm},</if>
+            <if test="hnnm != null">HNNM = #{hnnm},</if>
+            <if test="stadr != null">STADR = #{stadr},</if>
+            <if test="stadrShort != null">STADR_SHORT = #{stadrShort},</if>
+            <if test="sttp != null">STTP = #{sttp},</if>
+            <if test="xj != null">xj = #{xj},</if>
+            <if test="swjUserList != null">swj_user_list = #{swjUserList},</if>
+            <if test="waterDatatm != null">water_datatm = #{waterDatatm},</if>
+            <if test="waterZ != null">water_z = #{waterZ},</if>
+            <if test="waterQ != null">water_q = #{waterQ},</if>
+            <if test="waterWptn != null">water_wptn = #{waterWptn},</if>
+            <if test="waterTmdelay != null">water_tmdelay = #{waterTmdelay},</if>
+            <if test="waterWarn != null">water_warn = #{waterWarn},</if>
+            <if test="rainDatatm != null">rain_datatm = #{rainDatatm},</if>
+            <if test="rainRfday != null">rain_rfday = #{rainRfday},</if>
+            <if test="rainRfxun != null">rain_rfxun = #{rainRfxun},</if>
+            <if test="rainRfmon != null">rain_rfmon = #{rainRfmon},</if>
+            <if test="rainRf != null">rain_rf = #{rainRf},</if>
+            <if test="rainRfmi != null">rain_rfmi = #{rainRfmi},</if>
+            <if test="rainRfall != null">rain_rfall = #{rainRfall},</if>
+            <if test="rainTmdelay != null">rain_tmdelay = #{rainTmdelay},</if>
+            <if test="rainWarn != null">rain_warn = #{rainWarn},</if>
+            <if test="bak1 != null">bak1 = #{bak1},</if>
+            <if test="bak2 != null">bak2 = #{bak2},</if>
+            <if test="seqNo != null">seq_no = #{seqNo},</if>
+        </trim>
+        where STID = #{stid}
+    </update>
+
+    <delete id="deleteXj56swzJixyByStid" parameterType="String">
+        delete from xj56swz_jixy where STID = #{stid}
+    </delete>
+
+    <delete id="deleteXj56swzJixyByStids" parameterType="String">
+        delete from xj56swz_jixy where STID in
+        <foreach item="stid" collection="array" open="(" separator="," close=")">
+            #{stid}
+        </foreach>
+    </delete>
+</mapper>

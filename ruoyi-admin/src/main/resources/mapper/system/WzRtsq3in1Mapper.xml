@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.WzRtsq3in1Mapper">
+
+    <resultMap type="WzRtsq3in1" id="WzRtsq3in1Result">
+        <result property="senid"    column="SENID"    />
+        <result property="time"    column="TIME"    />
+        <result property="v"    column="V"    />
+    </resultMap>
+
+    <resultMap type="Special_values" id="Special_valuesResult">
+        <result property="senid"    column="SENID"    />
+        <result property="max"    column="MAX"    />
+        <result property="min"    column="MIN"    />
+        <result property="avg"    column="AVG"    />
+        <result property="total"    column="TOTAL"    />
+    </resultMap>
+
+
+
+
+    <sql id="selectWzRtsq3in1Vo">
+        select SENID, TIME, V from wz_rtsq3in1
+    </sql>
+
+    <select id="selectWzRtsq3in1List" parameterType="WzRtsq3in1"  resultMap="WzRtsq3in1Result">
+        <!--<include refid="selectWzRtsq3in1Vo"/>-->
+        <!--<where>  -->
+            <!--<if test="senid != null "> and SENID = #{senid}</if>-->
+            <!--<if test="time != null "> and TIME = #{time}</if>-->
+            <!--<if test="v != null "> and V = #{v}</if>-->
+        <!--</where>-->
+        select distinct c.csid,c.csname,s.SENID as senId,s.SENNAME as senName,w.TIME as time,w.V as value from wz_cs c RIGHT JOIN
+        wz_sensor2 s on c.csid = s.CSID LEFT JOIN wz_rtsq3in1 w on s.SENID = w.SENID where c.csid=#{arg0} and w.TIME>=#{arg1} order by time asc
+    </select>
+
+
+    <select id="selectWzRtsq3in1bbList"   resultType="java.util.HashMap">
+      ${arg0}
+    </select>
+
+    <select id="selectWzRtsq3in1menuList" parameterType="WzRtsq3in1"  resultMap="WzRtsq3in1Result">
+        select c.csid,c.csname,s.SENID as senId,s.SENNAME as senName from wz_cs c RIGHT JOIN wz_sensor2 s on c.csid = s.CSID
+    </select>
+
+    <select id="selectWzRtsq3in1specialList" parameterType="Special_values"  resultMap="Special_valuesResult">
+       SELECT SENID,MAX(V) max,MIN(V) min,round(AVG(V),3) avg,SUM(V) total FROM wz_rtsq3in1_clean WHERE SENID in
+
+        <foreach item="item" index="index" collection="item"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        AND extract(minute from TIME) = 0
+       AND TIME BETWEEN #{starttime} AND #{endtime} GROUP BY SENID
+    </select>
+
+    <select id="selectWzRtsq3in1BySenid" parameterType="Long" resultMap="WzRtsq3in1Result">
+        <include refid="selectWzRtsq3in1Vo"/>
+        where SENID = #{senid}
+    </select>
+
+    <insert id="insertWzRtsq3in1" parameterType="WzRtsq3in1">
+        insert into wz_rtsq3in1
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="senid != null">SENID,</if>
+            <if test="time != null">TIME,</if>
+            <if test="v != null">V,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="senid != null">#{senid},</if>
+            <if test="time != null">#{time},</if>
+            <if test="v != null">#{v},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWzRtsq3in1" parameterType="WzRtsq3in1">
+        update wz_rtsq3in1
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="time != null">TIME = #{time},</if>
+            <if test="v != null">V = #{v},</if>
+        </trim>
+        where SENID = #{senid}
+    </update>
+
+    <delete id="deleteWzRtsq3in1BySenid" parameterType="Long">
+        delete from wz_rtsq3in1 where SENID = #{senid}
+    </delete>
+
+    <delete id="deleteWzRtsq3in1BySenids" parameterType="String">
+        delete from wz_rtsq3in1 where SENID in
+        <foreach item="senid" collection="array" open="(" separator="," close=")">
+            #{senid}
+        </foreach>
+    </delete>
+</mapper>

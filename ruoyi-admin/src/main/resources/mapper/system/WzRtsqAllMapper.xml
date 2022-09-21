@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.WzRtsqAllMapper">
+
+    <resultMap type="WzRtsqAll" id="WzRtsqAllResult">
+        <result property="summary"    column="summary"    />
+        <result property="csid"    column="csid"    />
+        <result property="csname"    column="csname"    />
+        <result property="bssw"    column="bssw"    />
+        <result property="bsswtime"    column="bsswtime"    />
+        <result property="bxsw"    column="bxsw"    />
+        <result property="bxswtime"    column="bxswtime"    />
+        <result property="ckll"    column="ckll"    />
+        <result property="cklltime"    column="cklltime"    />
+        <result property="rkll"    column="rkll"    />
+        <result property="rklltime"    column="rklltime"    />
+        <result property="qcyg"    column="qcyg"    />
+        <result property="qcygtime"    column="qcygtime"    />
+    </resultMap>
+
+    <resultMap id="WzRtsqAllWzCsResult" type="WzRtsqAll" extends="WzRtsqAllResult">
+        <collection property="wzCsList" notNullColumn="sub_csid" javaType="java.util.List" resultMap="WzCsResult" />
+    </resultMap>
+
+    <resultMap type="WzCs" id="WzCsResult">
+        <result property="csid"    column="sub_csid"    />
+        <result property="csname"    column="sub_csname"    />
+        <result property="ceslo"    column="sub_ceslo"    />
+        <result property="cntla"    column="sub_cntla"    />
+        <result property="state"    column="sub_state"    />
+        <result property="summary"    column="sub_summary"    />
+    </resultMap>
+
+    <sql id="selectWzRtsqAllVo">
+        select summary, csid, csname, bssw, bsswtime, bxsw, bxswtime, ckll, cklltime, rkll, rklltime, qcyg, qcygtime from wz_rtsq_all
+    </sql>
+
+    <select id="selectWzRtsqAllList" parameterType="WzRtsqAll" resultMap="WzRtsqAllResult">
+        <include refid="selectWzRtsqAllVo"/>
+        <where>
+            <if test="summary != null  and summary != ''"> and summary = #{summary}</if>
+            <if test="csid != null "> and csid = #{csid}</if>
+            <if test="csname != null  and csname != ''"> and csname like concat('%', #{csname}, '%')</if>
+            <if test="bssw != null "> and bssw = #{bssw}</if>
+            <if test="bsswtime != null "> and bsswtime = #{bsswtime}</if>
+            <if test="bxsw != null "> and bxsw = #{bxsw}</if>
+            <if test="bxswtime != null "> and bxswtime = #{bxswtime}</if>
+            <if test="ckll != null "> and ckll = #{ckll}</if>
+            <if test="cklltime != null "> and cklltime = #{cklltime}</if>
+            <if test="rkll != null "> and rkll = #{rkll}</if>
+            <if test="rklltime != null "> and rklltime = #{rklltime}</if>
+            <if test="qcyg != null "> and qcyg = #{qcyg}</if>
+            <if test="qcygtime != null "> and qcygtime = #{qcygtime}</if>
+        </where>
+    </select>
+
+    <select id="selectWzRtsqAllBySummary" parameterType="String" resultMap="WzRtsqAllWzCsResult">
+        select a.summary, a.csid, a.csname, a.bssw, a.bsswtime, a.bxsw, a.bxswtime, a.ckll, a.cklltime, a.rkll, a.rklltime, a.qcyg, a.qcygtime,
+ b.csid as sub_csid, b.csname as sub_csname, b.ceslo as sub_ceslo, b.cntla as sub_cntla, b.state as sub_state, b.summary as sub_summary
+        from wz_rtsq_all a
+        left join wz_cs b on b.csid = a.csid
+
+    </select>
+
+    <insert id="insertWzRtsqAll" parameterType="WzRtsqAll">
+        insert into wz_rtsq_all
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="summary != null">summary,</if>
+            <if test="csid != null">csid,</if>
+            <if test="csname != null">csname,</if>
+            <if test="bssw != null">bssw,</if>
+            <if test="bsswtime != null">bsswtime,</if>
+            <if test="bxsw != null">bxsw,</if>
+            <if test="bxswtime != null">bxswtime,</if>
+            <if test="ckll != null">ckll,</if>
+            <if test="cklltime != null">cklltime,</if>
+            <if test="rkll != null">rkll,</if>
+            <if test="rklltime != null">rklltime,</if>
+            <if test="qcyg != null">qcyg,</if>
+            <if test="qcygtime != null">qcygtime,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="summary != null">#{summary},</if>
+            <if test="csid != null">#{csid},</if>
+            <if test="csname != null">#{csname},</if>
+            <if test="bssw != null">#{bssw},</if>
+            <if test="bsswtime != null">#{bsswtime},</if>
+            <if test="bxsw != null">#{bxsw},</if>
+            <if test="bxswtime != null">#{bxswtime},</if>
+            <if test="ckll != null">#{ckll},</if>
+            <if test="cklltime != null">#{cklltime},</if>
+            <if test="rkll != null">#{rkll},</if>
+            <if test="rklltime != null">#{rklltime},</if>
+            <if test="qcyg != null">#{qcyg},</if>
+            <if test="qcygtime != null">#{qcygtime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWzRtsqAll" parameterType="WzRtsqAll">
+        update wz_rtsq_all
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="csid != null">csid = #{csid},</if>
+            <if test="csname != null">csname = #{csname},</if>
+            <if test="bssw != null">bssw = #{bssw},</if>
+            <if test="bsswtime != null">bsswtime = #{bsswtime},</if>
+            <if test="bxsw != null">bxsw = #{bxsw},</if>
+            <if test="bxswtime != null">bxswtime = #{bxswtime},</if>
+            <if test="ckll != null">ckll = #{ckll},</if>
+            <if test="cklltime != null">cklltime = #{cklltime},</if>
+            <if test="rkll != null">rkll = #{rkll},</if>
+            <if test="rklltime != null">rklltime = #{rklltime},</if>
+            <if test="qcyg != null">qcyg = #{qcyg},</if>
+            <if test="qcygtime != null">qcygtime = #{qcygtime},</if>
+        </trim>
+        where summary = #{summary}
+    </update>
+
+    <delete id="deleteWzRtsqAllBySummary" parameterType="String">
+        delete from wz_rtsq_all where summary = #{summary}
+    </delete>
+
+    <delete id="deleteWzRtsqAllBySummarys" parameterType="String">
+        delete from wz_rtsq_all where summary in
+        <foreach item="summary" collection="array" open="(" separator="," close=")">
+            #{summary}
+        </foreach>
+    </delete>
+
+    <delete id="deleteWzCsByCsids" parameterType="String">
+        delete from wz_cs where csid in
+        <foreach item="csid" collection="array" open="(" separator="," close=")">
+            #{csid}
+        </foreach>
+    </delete>
+
+    <delete id="deleteWzCsByCsid" parameterType="String">
+        delete from wz_cs where csid = #{csid}
+    </delete>
+
+    <insert id="batchWzCs">
+        insert into wz_cs( csid, csname, ceslo, cntla, state, summary) values
+		<foreach item="item" index="index" collection="list" separator=",">
+            ( #{item.csid}, #{item.csname}, #{item.ceslo}, #{item.cntla}, #{item.state}, #{item.summary})
+        </foreach>
+    </insert>
+</mapper>

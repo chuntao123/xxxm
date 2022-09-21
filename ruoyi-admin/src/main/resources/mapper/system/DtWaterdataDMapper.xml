@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.DtWaterdataDMapper">
+
+    <resultMap type="DtWaterdataD" id="DtWaterdataDResult">
+        <result property="wdid"    column="WDID"    />
+        <result property="stid"    column="STID"    />
+        <result property="omid"    column="OMID"    />
+        <result property="datatm"    column="DATATM"    />
+        <result property="z"    column="Z"    />
+        <result property="q"    column="Q"    />
+        <result property="wptn"    column="WPTN"    />
+        <result property="msqmt"    column="MSQMT"    />
+        <result property="tmdelay"    column="TMDELAY"    />
+        <result property="syncfl"    column="SYNCFL"    />
+        <result property="otherdata"    column="OTHERDATA"    />
+        <result property="errmsg"    column="ERRMSG"    />
+        <result property="createtm"    column="CREATETM"    />
+        <result property="moditm"    column="MODITM"    />
+        <result property="ishuman"    column="ISHUMAN"    />
+        <result property="xsmxv"    column="XSMXV"    />
+    </resultMap>
+
+    <resultMap type="DtWaterdataDVo" id="DtWaterdataDVoResult">
+        <result property="stid"    column="STID"    />
+        <result property="datatm"    column="DATATM"    />
+        <result property="z"    column="Z"    />
+    </resultMap>
+
+    <resultMap type="DtWaterdataDallVo" id="DtWaterdataDallVoResult">
+        <result property="stid"    column="STID"    />
+        <result property="datatm"    column="DATATM"    />
+        <result property="z"    column="Z"    />
+        <result property="z6h"    column="Z6H"    />
+        <result property="z12h"    column="Z12H"    />
+    </resultMap>
+
+
+    <resultMap id="DtWaterdataDXj56swzJixyResult" type="DtWaterdataD" extends="DtWaterdataDResult">
+        <collection property="xj56swzJixyList" notNullColumn="sub_STID" javaType="java.util.List" resultMap="Xj56swzJixyResult" />
+    </resultMap>
+
+    <resultMap type="Xj56swzJixy" id="Xj56swzJixyResult">
+        <result property="stid"    column="sub_STID"    />
+        <result property="stnm"    column="sub_STNM"    />
+        <result property="lgtd"    column="sub_LGTD"    />
+        <result property="lttd"    column="sub_LTTD"    />
+        <result property="rvnm"    column="sub_RVNM"    />
+        <result property="bsnm"    column="sub_BSNM"    />
+        <result property="hnnm"    column="sub_HNNM"    />
+        <result property="stadr"    column="sub_STADR"    />
+        <result property="stadrShort"    column="sub_STADR_SHORT"    />
+        <result property="sttp"    column="sub_STTP"    />
+        <result property="xj"    column="sub_xj"    />
+        <result property="swjUserList"    column="sub_swj_user_list"    />
+        <result property="waterDatatm"    column="sub_water_datatm"    />
+        <result property="waterZ"    column="sub_water_z"    />
+        <result property="waterQ"    column="sub_water_q"    />
+        <result property="waterWptn"    column="sub_water_wptn"    />
+        <result property="waterTmdelay"    column="sub_water_tmdelay"    />
+        <result property="waterWarn"    column="sub_water_warn"    />
+        <result property="rainDatatm"    column="sub_rain_datatm"    />
+        <result property="rainRfday"    column="sub_rain_rfday"    />
+        <result property="rainRfxun"    column="sub_rain_rfxun"    />
+        <result property="rainRfmon"    column="sub_rain_rfmon"    />
+        <result property="rainRf"    column="sub_rain_rf"    />
+        <result property="rainRfmi"    column="sub_rain_rfmi"    />
+        <result property="rainRfall"    column="sub_rain_rfall"    />
+        <result property="rainTmdelay"    column="sub_rain_tmdelay"    />
+        <result property="rainWarn"    column="sub_rain_warn"    />
+        <result property="bak1"    column="sub_bak1"    />
+        <result property="bak2"    column="sub_bak2"    />
+        <result property="seqNo"    column="sub_seq_no"    />
+    </resultMap>
+
+    <sql id="selectDtWaterdataDVo">
+        select WDID, STID, OMID, DATATM, Z, Q, WPTN, MSQMT, TMDELAY, SYNCFL, OTHERDATA, ERRMSG, CREATETM, MODITM, ISHUMAN, XSMXV from dt_waterdata_d
+    </sql>
+
+    <select id="selectDtWaterdataDList" parameterType="DtWaterdataD" resultMap="DtWaterdataDResult">
+     select x.stnm,x.water_datatm,d.* from xj56swz_jixy x INNER JOIN dt_waterdata_d d on x.stid=d.STID where x.stid=#{arg0} and datatm>=#{arg1} order by datatm asc
+    </select>
+
+    <select id="selectDtWaterdataDVoList" parameterType="DtWaterdataDVo" resultMap="DtWaterdataDVoResult">
+     SELECT STID,DATATM,Z FROM dt_waterdata_d WHERE STID=#{arg0} AND DATATM > #{arg1} AND extract(minute from DATATM) = 0
+    </select>
+
+
+    <select id="selectDtWaterdataD6hVoList" parameterType="DtWaterdataDVo" resultMap="DtWaterdataDVoResult">
+     SELECT STID,DATATM,Z FROM cleaned_6_trcfn_6h WHERE STID=#{arg0} AND DATATM > #{arg1}
+    </select>
+
+
+    <select id="selectDtWaterdataD12hVoList" parameterType="DtWaterdataDVo" resultMap="DtWaterdataDVoResult">
+     SELECT STID,DATATM,Z FROM cleaned_6_trcfn_12h WHERE STID=#{arg0} AND DATATM > #{arg1}
+    </select>
+
+
+    <select id="selectDtWaterdataDallVoList" parameterType="DtWaterdataDallVo" resultMap="DtWaterdataDallVoResult">
+     select a.STID,a.DATATM,a.Z,b.Z z6h,c.Z z12h from
+     (( dt_waterdata_d a LEFT JOIN cleaned_6_trcfn_6h b ON a.DATATM = b.DATATM ) LEFT JOIN cleaned_6_trcfn_12h c ON a.DATATM = c.DATATM )
+     WHERE a.STID=10000003 AND extract(minute from a.DATATM) = 0 AND a.DATATM BETWEEN #{arg0} and #{arg1}  ORDER BY a.DATATM DESC
+     LIMIT #{arg2},#{arg3}
+    </select>
+
+
+    <select id="selectDtWaterdataDByWdid" parameterType="Long" resultMap="DtWaterdataDXj56swzJixyResult">
+        select a.WDID, a.STID, a.OMID, a.DATATM, a.Z, a.Q, a.WPTN, a.MSQMT, a.TMDELAY, a.SYNCFL, a.OTHERDATA, a.ERRMSG, a.CREATETM, a.MODITM, a.ISHUMAN, a.XSMXV,
+ b.STID as sub_STID, b.STNM as sub_STNM, b.LGTD as sub_LGTD, b.LTTD as sub_LTTD, b.RVNM as sub_RVNM, b.BSNM as sub_BSNM, b.HNNM as sub_HNNM, b.STADR as sub_STADR, b.STADR_SHORT as sub_STADR_SHORT, b.STTP as sub_STTP, b.xj as sub_xj, b.swj_user_list as sub_swj_user_list, b.water_datatm as sub_water_datatm, b.water_z as sub_water_z, b.water_q as sub_water_q, b.water_wptn as sub_water_wptn, b.water_tmdelay as sub_water_tmdelay, b.water_warn as sub_water_warn, b.rain_datatm as sub_rain_datatm, b.rain_rfday as sub_rain_rfday, b.rain_rfxun as sub_rain_rfxun, b.rain_rfmon as sub_rain_rfmon, b.rain_rf as sub_rain_rf, b.rain_rfmi as sub_rain_rfmi, b.rain_rfall as sub_rain_rfall, b.rain_tmdelay as sub_rain_tmdelay, b.rain_warn as sub_rain_warn, b.bak1 as sub_bak1, b.bak2 as sub_bak2, b.seq_no as sub_seq_no
+        from dt_waterdata_d a
+        left join xj56swz_jixy b on b.STID = a.WDID
+        where a.WDID = #{wdid}
+    </select>
+
+    <insert id="insertDtWaterdataD" parameterType="DtWaterdataD">
+        insert into dt_waterdata_d
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="wdid != null">WDID,</if>
+            <if test="stid != null and stid != ''">STID,</if>
+            <if test="omid != null">OMID,</if>
+            <if test="datatm != null">DATATM,</if>
+            <if test="z != null">Z,</if>
+            <if test="q != null">Q,</if>
+            <if test="wptn != null">WPTN,</if>
+            <if test="msqmt != null">MSQMT,</if>
+            <if test="tmdelay != null">TMDELAY,</if>
+            <if test="syncfl != null">SYNCFL,</if>
+            <if test="otherdata != null">OTHERDATA,</if>
+            <if test="errmsg != null">ERRMSG,</if>
+            <if test="createtm != null">CREATETM,</if>
+            <if test="moditm != null">MODITM,</if>
+            <if test="ishuman != null">ISHUMAN,</if>
+            <if test="xsmxv != null">XSMXV,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="wdid != null">#{wdid},</if>
+            <if test="stid != null and stid != ''">#{stid},</if>
+            <if test="omid != null">#{omid},</if>
+            <if test="datatm != null">#{datatm},</if>
+            <if test="z != null">#{z},</if>
+            <if test="q != null">#{q},</if>
+            <if test="wptn != null">#{wptn},</if>
+            <if test="msqmt != null">#{msqmt},</if>
+            <if test="tmdelay != null">#{tmdelay},</if>
+            <if test="syncfl != null">#{syncfl},</if>
+            <if test="otherdata != null">#{otherdata},</if>
+            <if test="errmsg != null">#{errmsg},</if>
+            <if test="createtm != null">#{createtm},</if>
+            <if test="moditm != null">#{moditm},</if>
+            <if test="ishuman != null">#{ishuman},</if>
+            <if test="xsmxv != null">#{xsmxv},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDtWaterdataD" parameterType="DtWaterdataD">
+        update dt_waterdata_d
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="stid != null and stid != ''">STID = #{stid},</if>
+            <if test="omid != null">OMID = #{omid},</if>
+            <if test="datatm != null">DATATM = #{datatm},</if>
+            <if test="z != null">Z = #{z},</if>
+            <if test="q != null">Q = #{q},</if>
+            <if test="wptn != null">WPTN = #{wptn},</if>
+            <if test="msqmt != null">MSQMT = #{msqmt},</if>
+            <if test="tmdelay != null">TMDELAY = #{tmdelay},</if>
+            <if test="syncfl != null">SYNCFL = #{syncfl},</if>
+            <if test="otherdata != null">OTHERDATA = #{otherdata},</if>
+            <if test="errmsg != null">ERRMSG = #{errmsg},</if>
+            <if test="createtm != null">CREATETM = #{createtm},</if>
+            <if test="moditm != null">MODITM = #{moditm},</if>
+            <if test="ishuman != null">ISHUMAN = #{ishuman},</if>
+            <if test="xsmxv != null">XSMXV = #{xsmxv},</if>
+        </trim>
+        where WDID = #{wdid}
+    </update>
+
+    <delete id="deleteDtWaterdataDByWdid" parameterType="Long">
+        delete from dt_waterdata_d where WDID = #{wdid}
+    </delete>
+
+    <delete id="deleteDtWaterdataDByWdids" parameterType="String">
+        delete from dt_waterdata_d where WDID in
+        <foreach item="wdid" collection="array" open="(" separator="," close=")">
+            #{wdid}
+        </foreach>
+    </delete>
+
+    <delete id="deleteXj56swzJixyBySTIDs" parameterType="String">
+        delete from xj56swz_jixy where STID in
+        <foreach item="sTID" collection="array" open="(" separator="," close=")">
+            #{sTID}
+        </foreach>
+    </delete>
+
+    <delete id="deleteXj56swzJixyBySTID" parameterType="Long">
+        delete from xj56swz_jixy where STID = #{sTID}
+    </delete>
+
+    <insert id="batchXj56swzJixy">
+        insert into xj56swz_jixy( STID, STNM, LGTD, LTTD, RVNM, BSNM, HNNM, STADR, STADR_SHORT, STTP, xj, swj_user_list, water_datatm, water_z, water_q, water_wptn, water_tmdelay, water_warn, rain_datatm, rain_rfday, rain_rfxun, rain_rfmon, rain_rf, rain_rfmi, rain_rfall, rain_tmdelay, rain_warn, bak1, bak2, seq_no) values
+		<foreach item="item" index="index" collection="list" separator=",">
+            ( #{item.stid}, #{item.stnm}, #{item.lgtd}, #{item.lttd}, #{item.rvnm}, #{item.bsnm}, #{item.hnnm}, #{item.stadr}, #{item.stadrShort}, #{item.sttp}, #{item.xj}, #{item.swjUserList}, #{item.waterDatatm}, #{item.waterZ}, #{item.waterQ}, #{item.waterWptn}, #{item.waterTmdelay}, #{item.waterWarn}, #{item.rainDatatm}, #{item.rainRfday}, #{item.rainRfxun}, #{item.rainRfmon}, #{item.rainRf}, #{item.rainRfmi}, #{item.rainRfall}, #{item.rainTmdelay}, #{item.rainWarn}, #{item.bak1}, #{item.bak2}, #{item.seqNo})
+        </foreach>
+    </insert>
+</mapper>

@@ -1,0 +1,164 @@
+/* 去除导航栏圆角 */
+@media (min-width: 768px) {
+    .navbar {
+        border-radius: 0 !important;
+
+    }
+}
+
+
+/* 设置图标颜色一致 */
+.iconfont {
+    color: rgb(149, 148, 149);
+}
+
+
+.el-dropdown-link {
+    white-space: nowrap;
+    cursor: pointer;
+    color: rgb(149, 148, 149);
+
+}
+
+
+.el-icon-arrow-down {
+    font-size: 12px;
+}
+
+.demonstration {
+    display: block;
+    color: #8492a6;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.nav li {
+    padding: 0 15px;
+    line-height: 50px;
+}
+
+.nav li:hover {
+    background-color: rgb(8, 8, 8);
+}
+
+.container-fluid .navbar-collapse .nav>li>a:hover,
+.nav li span:hover,
+.iconfont:hover {
+    color: #fff;
+}
+/*小屏幕菜单颜色*/
+.minnav{
+  color: rgb(149, 148, 149);
+}
+
+.minnav>ul{
+  height:  Calc(100vh - 92px);
+}
+.minnav>ul>li{
+
+  cursor: pointer;
+}
+.navbar-inverse .container-fluid .navbar-nav li span:focus-within .el-icon-caret-left {
+    transform: rotate(-90deg);
+    transition: all 0.8s;
+}
+
+.nav li span i {
+    padding-left: 5px;
+}
+
+.navbar .container-fluid div:nth-child(2) ul li a:hover,
+.navbar-inverse .container-fluid .navbar-nav li:focus-within span {
+    color: #fff;
+}
+
+.navbar-inverse .container-fluid .navbar-nav>.active:hover{
+  color: #fff;
+  cursor: pointer
+}
+.navbar-inverse .container-fluid .navbar-nav>.active {
+    color: rgb(149, 148, 149);
+}
+
+/* 弹出栏向上偏移 */
+.el-popper[x-placement^=bottom] {
+    margin-top: 3px !important;
+    border-radius: 18px;
+}
+/* 登录icon */
+.el-dropdown-menu__item {
+    padding: 0 30px !important;
+    margin: 0 20px !important;
+    border-bottom: 1px solid #8492a6;
+}
+
+.router-link-active {
+    text-decoration: none !important;
+}
+
+
+
+.container-fluid .navbar-header span:hover {
+    color: rgb(149, 148, 149);
+    cursor: default;
+}
+
+.navbar .container-fluid .navbar-header {
+    /* 清除浮动 */
+    overflow: hidden;
+
+}
+
+
+
+.navbar .container-fluid div:nth-child(2) ul li {
+    transition: all 1s;
+    margin:30px auto ;
+    border-bottom: 1px solid rgb(66, 66, 69);
+
+}
+
+
+.navbar .container-fluid div:nth-child(2) ul li a {
+    color: rgb(149, 148, 149);
+    text-decoration: none;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+
+
+@media (min-width: 767px) {
+    .navbar .container-fluid div:nth-child(2),.homeicon {
+        display: none;
+    }
+
+}
+
+/* @media (max-width: 767px) {
+
+    .container-fluid .navbar-header ul {}
+} */
+
+
+.navbar {
+    margin-bottom: 0 !important;
+}
+/*吸顶*/
+.navBarWrap {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width:100%;
+}
+/*小屏下左上角图标*/
+.el-icon-s-home{
+  float: left;
+  height: 50px;
+  padding: 15px 0 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
